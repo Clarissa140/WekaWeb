@@ -159,7 +159,6 @@ def train():
     return render_template("train.html")
 
 
-
 # ---------------------------------------------
 # Clasificación con modelo guardado
 # ---------------------------------------------
