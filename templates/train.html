@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-lg">
+  <div class="card-header bg-primary text-white">
+    <h3 class="mb-0">⚙️ Entrenar un modelo</h3>
+  </div>
+  <div class="card-body">
+    <form method="POST" enctype="multipart/form-data" class="row g-3">
+      
+      <div class="col-md-12">
+        <label class="form-label fw-bold">Dataset CSV</label>
+        <input type="file" name="dataset" class="form-control" required>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Algoritmo</label>
+        <select name="algoritmo" class="form-select" id="algoritmo">
+          <option value="id3">🌳 ID3 (Árbol de decisión)</option>
+          <option value="j48">🌲 J48 (Árbol de decisión con poda)</option>
+          <option value="knn">👥 KNN (Vecinos más cercanos)</option>
+        </select>
+      </div>
+
+      <div class="col-md-6" id="ccp_container" style="display:none;">
+        <label class="form-label fw-bold">Poda ccp_alpha (solo J48)</label>
+        <input type="number" step="0.01" name="ccp_alpha" value="0.0" class="form-control">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Método de validación</label>
+        <select name="validacion" class="form-select" id="validacion">
+          <option value="holdout">📊 Hold-out (%)</option>
+          <option value="kfold">🔁 K-Fold</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label id="param_label" class="form-label fw-bold">Parámetro (Porcentaje %)</label>
+        <input type="number" name="parametro" value="5" class="form-control">
+      </div>
+
+      <div class="col-12 d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">🚀 Entrenar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Mostrar campo ccp_alpha solo si se selecciona J48
+  const algoritmoSelect = document.getElementById('algoritmo');
+  const ccpContainer = document.getElementById('ccp_container');
+  algoritmoSelect.addEventListener('change', () => {
+    ccpContainer.style.display = (algoritmoSelect.value === 'j48') ? 'block' : 'none';
+  });
+
+  // Cambiar label del parámetro según validación
+  const validacionSelect = document.getElementById('validacion');
+  const paramLabel = document.getElementById('param_label');
+  validacionSelect.addEventListener('change', () => {
+    if (validacionSelect.value === 'holdout') {
+      paramLabel.textContent = "Parámetro (Porcentaje %)";
+    } else {
+      paramLabel.textContent = "Parámetro (Número de K)";
+    }
+  });
+</script>
+{% endblock %}

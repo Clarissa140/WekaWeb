@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-lg">
+    <div class="card-header bg-success text-white">
+        <h3 class="mb-0">🔍 Clasificación con modelo entrenado</h3>
+    </div>
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data" class="row g-3">
+
+            <!-- Seleccionar modelo -->
+            <div class="col-md-12">
+                <label class="form-label fw-bold">Selecciona un modelo guardado</label>
+                <select name="modelo" class="form-select">
+                    {% for m in modelos %}
+                    <option value="{{ m }}" {% if modelo==m %}selected{% endif %}>{{ m }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Mostrar columnas esperadas -->
+            {% if columnas %}
+            <div class="col-md-12">
+                <div class="alert alert-secondary">
+                    <strong>📌 Columnas de entrada esperadas:</strong> {{ columnas|join(", ") }}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Entrada manual -->
+            <div class="col-md-12">
+                <label class="form-label fw-bold">Valores de entrada</label>
+
+                {% for col in columnas %}
+                <input type="text" name="{{ col }}" class="form-control mb-2" placeholder="Ingresa {{ col }}" required>
+                {% endfor %}
+
+                <div class="form-text">Introduce un valor por cada columna.</div>
+            </div>
+
+
+            <!-- Opción de subir CSV -->
+            <div class="col-md-12">
+                <label class="form-label fw-bold">Subir archivo CSV</label>
+                <input type="file" name="csv_file" class="form-control">
+                <div class="form-text">El CSV debe contener las mismas columnas en el mismo orden.</div>
+            </div>
+
+            <!-- Botón -->
+            <div class="col-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">🚀 Clasificar</button>
+            </div>
+        </form>
+
+        <!-- Resultado individual -->
+        {% if resultado %}
+        <div class="alert alert-info mt-4 text-center shadow-sm">
+            <h5 class="mb-0">📌 Resultado de la predicción:
+                <span class="fw-bold text-primary">{{ resultado }}</span>
+            </h5>
+        </div>
+        {% endif %}
+
+        <!-- Resultados de CSV -->
+        {% if resultados_csv %}
+        <div class="mt-4">
+            <h5 class="fw-bold">📊 Resultados del CSV:</h5>
+            <table class="table table-bordered table-striped">
+                <thead class="table-light">
+                    <tr>
+                        {% for col in columnas %}
+                        <div class="col-md-6">
+                            <label class="form-label">{{ col }}</label>
+                            <input type="text" name="{{ col }}" class="form-control" required>
+                        </div>
+                        {% endfor %}
+                        <th>Predicción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fila in resultados_csv %}
+                    <tr>
+                        {% for valor in fila["valores"] %}
+                        <td>{{ valor }}</td>
+                        {% endfor %}
+                        <td class="fw-bold text-primary">{{ fila["prediccion"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow-lg mt-4">
+  <div class="card-header bg-info text-white">
+    <h3 class="mb-0">📊 Resultados del entrenamiento</h3>
+  </div>
+  <div class="card-body">
+    
+    <h5>📌 Reporte de Clasificación</h5>
+    <div class="table-responsive">
+      {{ report|safe }}
+    </div>
+
+    <h5 class="mt-4">📌 Matriz de Confusión</h5>
+    <div class="text-center">
+      <img src="data:image/png;base64,{{ cm_b64 }}" class="img-fluid rounded border border-dark shadow" alt="Matriz de confusión">
+    </div>
+
+    {% if arbol_b64 %}
+    <h5 class="mt-4">🌳 Árbol de Decisión (ID3)</h5>
+    <div class="text-center">
+      <img src="data:image/png;base64,{{ arbol_b64 }}" class="img-fluid rounded border border-dark shadow" style="max-width:1000px;" alt="Árbol de decisión">
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

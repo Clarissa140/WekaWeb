@@ -1,0 +1,16 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.btn-lg {
+  border-radius: 10px;
+  padding: 10px 20px;
+}
