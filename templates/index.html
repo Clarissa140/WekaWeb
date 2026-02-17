@@ -1,22 +1,72 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row justify-content-center">
-  <div class="col-md-8">
-    <div class="card shadow-lg border-0">
-      <div class="card-body text-center p-5">
-        <h2 class="fw-bold text-primary mb-3">🌐 Bienvenido a Mini Weka Digital</h2>
-        <p class="text-muted mb-4">
-          Una plataforma web desarrollada con <strong>Flask</strong> para 
-          entrenar, validar y clasificar modelos de Machine Learning de manera sencilla.
-        </p>
+<div class="container-fluid py-5">
+  <!-- Sección Principal -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+      <div class="card shadow-lg border-0 hero-card">
+        <div class="card-body text-center p-5">
+          <h1 class="fw-bold text-primary mb-3 display-5">🌐 Bienvenido a Mini Weka Digital</h1>
+          <p class="lead text-muted mb-4">
+            Una plataforma web desarrollada con <strong>Flask</strong> para 
+            entrenar, validar y clasificar modelos de Machine Learning de manera sencilla.
+          </p>
 
-        <div class="d-flex justify-content-center gap-3">
-          <a href="{{ url_for('train') }}" class="btn btn-lg btn-primary shadow-sm">
-            ⚙️ Entrenar un modelo
-          </a>
-          <a href="{{ url_for('classify') }}" class="btn btn-lg btn-success shadow-sm">
-            🔍 Clasificar con modelo
-          </a>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{{ url_for('train') }}" class="btn btn-lg btn-primary shadow-sm hover-lift">
+              ⚙️ Entrenar un modelo
+            </a>
+            <a href="{{ url_for('classify') }}" class="btn btn-lg btn-success shadow-sm hover-lift">
+              🔍 Clasificar con modelo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Widgets -->
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Spotify -->
+      <div class="widget-section mb-5">
+        <h3 class="section-title mb-4">🎵 Música en Vivo</h3>
+        <div class="widget-card shadow-sm">
+          <div class="iframe-container spotify-container">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7mYNRMc9Hq7Ao2UKOUgRdX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instagram -->
+      <div class="widget-section mb-5">
+        <h3 class="section-title mb-4">📸 Síguenos en Instagram</h3>
+        <div class="widget-card shadow-sm">
+          <div class="iframe-container instagram-container">
+            <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-6cd0a7e8-676a-4ef4-b9c6-05c2ef59ea7b" data-elfsight-app-lazy></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maps -->
+      <div class="widget-section mb-5">
+        <h3 class="section-title mb-4">📍 Ubicación</h3>
+        <div class="widget-card shadow-sm">
+          <div class="iframe-container maps-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d29968.989486100443!2d-99.22427784999998!3d20.128886899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1771021415615!5m2!1ses-419!2smx" width="100%" height="450" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- YouTube -->
+      <div class="widget-section mb-5">
+        <h3 class="section-title mb-4">📺 Vídeos Destacados</h3>
+        <div class="widget-card shadow-sm">
+          <div class="iframe-container youtube-container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/DyF_HOcJCHc?si=Mro_uVRjv7JwKA5j" title="YouTube video player" frameborder="0" style="border-radius:12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
