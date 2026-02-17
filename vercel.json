@@ -1,12 +1,8 @@
 {
-  "buildCommand": "pip install -r requirements.txt",
-  "outputDirectory": ".",
-  "framework": "wsgi",
-  "functions": {
-    "app.py": {
-      "runtime": "python3.12",
-      "memory": 3008,
-      "maxDuration": 30
-    }
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "env": {
+    "FLASK_ENV": "production"
   }
 }
